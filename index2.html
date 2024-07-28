@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Contactos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles2.css">
+</head>
+
+<body>
+    <!-- Botones de inicio y cierre de sesión -->
+    <div class="container mt-3 text-right">
+        <button id="loginButton" class="btn btn-primary">Iniciar Sesión</button>
+        <button id="logoutButton" class="btn btn-danger" style="display: none;">Cerrar Sesión</button>
+    </div>
+
+    <!-- Página de inicio de sesión -->
+    <div id="loginPage" class="container mt-5" style="display: none;">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+        <p id="loginError" class="text-danger mt-2"></p>
+    </div>
+
+    <!-- Página del directorio -->
+    <div id="directoryPage" class="container mt-5">
+        <h2>Directorio de Contactos</h2>
+        <form id="contactForm" style="display: none;">
+            <!-- Formulario para agregar contactos -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="gender">Género</label>
+                    <select class="form-control" id="gender" required>
+                        <option value="Male">Masculino</option>
+                        <option value="Female">Femenino</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="birthday">Cumpleaños</label>
+                    <input type="date" class="form-control" id="birthday" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="photo">URL de la Foto</label>
+                    <input type="url" class="form-control" id="photo" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nationality">Nacionalidad</label>
+                    <input type="text" class="form-control" id="nationality" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="birthplace">Lugar de Nacimiento</label>
+                    <input type="text" class="form-control" id="birthplace" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="residence">Residencia</label>
+                    <input type="text" class="form-control" id="residence" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Bachiller</label>
+                    <select class="form-control" id="bachelor" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Licenciatura</label>
+                    <select class="form-control" id="licenciature" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Maestría</label>
+                    <select class="form-control" id="master" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Doctorado</label>
+                    <select class="form-control" id="doctorate" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Segunda Carrera</label>
+                    <select class="form-control" id="secondDegree" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="otherStudies">Otros Estudios</label>
+                <input type="text" class="form-control" id="otherStudies">
+            </div>
+            <div class="form-group">
+                <label for="domainCourse">Curso de Dominio</label>
+                <input type="text" class="form-control" id="domainCourse">
+            </div>
+            <div class="form-group">
+                <label for="publications">Publicaciones</label>
+                <input type="text" class="form-control" id="publications">
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Contacto</button>
+        </form>
+        <div class="card-columns mt-5" id="contactsCardContainer">
+            <!-- Tarjetas de contactos se insertarán aquí -->
+        </div>
+    </div>
+
+    <!-- Modal para mostrar detalles del contacto -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Detalles del Contacto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Detalles del contacto se insertarán aquí -->
+                    <div id="contactDetails"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts2.js"></script>
+</body>
+
+</html>

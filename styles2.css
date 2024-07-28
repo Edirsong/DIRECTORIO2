@@ -1,0 +1,37 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.card {
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.card .card-body {
+    padding: 15px;
+}
+
+.card .card-icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -10px;
+}
+
+.card .card-icons button {
+    margin-left: 5px;
+}
+
+#loginPage {
+    display: none;
+}
